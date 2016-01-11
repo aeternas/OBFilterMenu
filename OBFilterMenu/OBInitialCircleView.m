@@ -30,7 +30,6 @@
         [self addSubview:self.circleButton];
         
         
-//        _bigCircleView = [[UIView alloc]initWithFrame:CGRectMake(100, 100, 100, 100)];
         _bigCircleView = [UIView new];
         self.bigCircleView.backgroundColor = [UIColor colorWithRed:238.0/255.0 green:87.0/255.0 blue:108.0/255.0 alpha:1.0];
         self.bigCircleView.clipsToBounds = YES;
