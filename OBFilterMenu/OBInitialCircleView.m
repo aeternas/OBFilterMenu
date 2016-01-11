@@ -23,93 +23,80 @@
     self = [super initWithFrame:frame];
     if (self) {
         _circleButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        self.circleButton.backgroundColor = [UIColor colorWithRed:233.0/255.0 green:91.0/255.0 blue:114.0/255.0 alpha:0.3];
+        self.circleButton.backgroundColor = [UIColor colorWithRed:233.0/255.0 green:91.0/255.0 blue:114.0/255.0 alpha:1.0];
         self.circleButton.clipsToBounds = YES;
-        [self.circleButton addTarget:self action:@selector(animateCircleAppearance) forControlEvents:UIControlEventTouchUpInside];
-        
+        [self.circleButton addTarget:self action:@selector(animateEnlargingCircleAppearance) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.circleButton];
-        
         
         _bigCircleView = [UIView new];
         self.bigCircleView.backgroundColor = [UIColor colorWithRed:238.0/255.0 green:87.0/255.0 blue:108.0/255.0 alpha:1.0];
         self.bigCircleView.clipsToBounds = YES;
-        self.bigCircleView.layer.cornerRadius = 0;
         
         [self insertSubview:self.bigCircleView belowSubview:self.circleButton];
-        
     }
     return self;
 }
+/*
+- (void)calling {
+    [self performSelector:@selector(animateEnlargingCircleAppearanceToSize:)withObject:[NSNumber numberWithFloat:self.circleButton.frame.size.width * 2.0f]];
+}
+*/
 
-
-
-- (void)animateCircleAppearance {
-    NSLog(@"yes!");
+- (void)animateEnlargingCircleAppearance {
     self.circleButton.backgroundColor = [UIColor colorWithRed:207.0/255.0 green:84.0/255.0 blue:105.0/255.0 alpha:1.0];
-    
+    /*
     self.bigCircleView.frame = ({
-        CGRect frame = CGRectZero;
+        CGRect frame   = CGRectZero;
         frame.origin.x = CGRectGetMidX(self.circleButton.frame);
         frame.origin.y = CGRectGetMidY(self.circleButton.frame);
         frame;
     });
-    
-    /*
-     [UIView animateWithDuration:1.0f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
-     CGRect bigCircleViewRect = self.bigCircleView.frame;
-     bigCircleViewRect.size.width = self.circleButton.frame.size.width * 3.0;
-     bigCircleViewRect.size.height = self.circleButton.frame.size.height * 3.0;
-     self.bigCircleView.frame = bigCircleViewRect;
-     } completion:nil];
      */
-    CGFloat animationDuration = 3.0; // Your duration
-    CGFloat animationDelay = 0.0; // Your delay (if any)
+    self.bigCircleView.layer.frame = self.circleButton.layer.frame;
+    self.bigCircleView.layer.cornerRadius = self.circleButton.layer.cornerRadius;
+    CGFloat size = self.circleButton.frame.size.width * 2.0;
+    CGFloat animationDuration = 3.0;
     
     CABasicAnimation *cornerRadiusAnimation = [CABasicAnimation animationWithKeyPath:@"cornerRadius"];
-    [cornerRadiusAnimation setFromValue:[NSNumber numberWithFloat:0.0]]; // The current value
-    [cornerRadiusAnimation setToValue:[NSNumber numberWithFloat:30.0]]; // The new value
+    [cornerRadiusAnimation setFromValue:[NSNumber numberWithFloat:self.circleButton.layer.cornerRadius]];
+    [cornerRadiusAnimation setToValue:[NSNumber numberWithFloat:size / 2.0]];
     [cornerRadiusAnimation setDuration:animationDuration];
-    [cornerRadiusAnimation setBeginTime:CACurrentMediaTime() + animationDelay];
+    [cornerRadiusAnimation setBeginTime:CACurrentMediaTime()];
     
-    // If your UIView animation uses a timing funcition then your basic animation needs the same one
     [cornerRadiusAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
     
-    // This will keep make the animation look as the "from" and "to" values before and after the animation
     [cornerRadiusAnimation setFillMode:kCAFillModeBoth];
     [[self.bigCircleView layer] addAnimation:cornerRadiusAnimation forKey:@"keepAsCircle"];
-    [[self.bigCircleView layer] setCornerRadius:30.0]; // Core Animation doesn't change the real value so we have to.
+    [[self.bigCircleView layer] setCornerRadius:size / 2.0];
     
     [UIView animateWithDuration:animationDuration
-                          delay:animationDelay
+                          delay:0.0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          
                          self.bigCircleView.layer.frame = ({
                              CGRect frame = self.bigCircleView.layer.frame;
-                             frame.origin.x -= 30.0;
-                             frame.origin.y -= 30.0;
-                             frame.size.width = 60.0;
-                             frame.size.height = 60.0;
+                             frame.origin.x -= size / 4.0;
+                             frame.origin.y -= size / 4.0;
+                             frame.size.width = size;
+                             frame.size.height = size;
                              frame;
                          });
-                     } completion:^(BOOL finished) {
-                         NSLog(@"Completed");
-                     }];
+                     } completion:nil];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    CGRect circleRect = self.circleButton.frame;
-    circleRect.size.width = self.frame.size.width / 3.0;
-    circleRect.size.height = self.frame.size.height / 3.0;
-    self.circleButton.frame = circleRect;
+    self.circleButton.frame = ({
+        CGRect frame      = CGRectZero;
+        frame.size.width  = self.frame.size.width / 3.0;
+        frame.size.height = self.frame.size.height / 3.0;
+        frame;
+    });
     self.circleButton.layer.cornerRadius = self.circleButton.frame.size.width / 2.0;
     
-    NSLog(@"%s", __PRETTY_FUNCTION__);
 }
-
-
 
 /*
 // Only override drawRect: if you perform custom drawing.

@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _circleView = [[OBInitialCircleView alloc]initWithFrame:CGRectMake(50.0, 50.0, 120.0, 120.0)];
+    _circleView = [[OBInitialCircleView alloc]initWithFrame:CGRectMake(50.0, 50.0, 150.0, 150.0)];
     [self.view addSubview:self.circleView];
 }
 
