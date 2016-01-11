@@ -7,8 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "OBInitialCircleView.h"
 
 @interface ViewController ()
+
+@property (nonatomic, readonly) OBInitialCircleView             *circleView;
 
 @end
 
@@ -16,12 +19,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    _circleView = [[OBInitialCircleView alloc]initWithFrame:CGRectMake(50.0, 50.0, 120.0, 120.0)];
+    [self.view addSubview:self.circleView];
 }
 
 @end

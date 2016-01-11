@@ -13,6 +13,7 @@
 		457EB4031C419324002C066F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 457EB4011C419324002C066F /* Main.storyboard */; };
 		457EB4051C419324002C066F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 457EB4041C419324002C066F /* Assets.xcassets */; };
 		457EB4081C419324002C066F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 457EB4061C419324002C066F /* LaunchScreen.storyboard */; };
+		457EB4111C41966C002C066F /* OBInitialCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 457EB4101C41966C002C066F /* OBInitialCircleView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		457EB4041C419324002C066F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		457EB4071C419324002C066F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		457EB4091C419324002C066F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		457EB40F1C41966C002C066F /* OBInitialCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBInitialCircleView.h; sourceTree = "<group>"; };
+		457EB4101C41966C002C066F /* OBInitialCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBInitialCircleView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +65,8 @@
 				457EB3FC1C419324002C066F /* AppDelegate.m */,
 				457EB3FE1C419324002C066F /* ViewController.h */,
 				457EB3FF1C419324002C066F /* ViewController.m */,
+				457EB40F1C41966C002C066F /* OBInitialCircleView.h */,
+				457EB4101C41966C002C066F /* OBInitialCircleView.m */,
 				457EB4011C419324002C066F /* Main.storyboard */,
 				457EB4041C419324002C066F /* Assets.xcassets */,
 				457EB4061C419324002C066F /* LaunchScreen.storyboard */,
@@ -149,6 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				457EB4111C41966C002C066F /* OBInitialCircleView.m in Sources */,
 				457EB4001C419324002C066F /* ViewController.m in Sources */,
 				457EB3FD1C419324002C066F /* AppDelegate.m in Sources */,
 				457EB3FA1C419324002C066F /* main.m in Sources */,
@@ -298,6 +304,7 @@
 				457EB40E1C419324002C066F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
